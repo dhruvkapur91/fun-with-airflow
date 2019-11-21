@@ -41,23 +41,4 @@ services:
             - ${HOME}/airflow_mount/dags:/usr/local/airflow/dags
             - ${HOME}/airflow_mount/logs:/usr/local/airflow/logs
 
-
-    data_postgres:
-        container_name: "data_postgres"
-        image: my-airflow-data-postgres:latest
-        volumes:
-            - ${HOME}/postgres_mount_data/postgres:/var/lib/postgresql/data        
-        environment:
-            - POSTGRES_USER=promotions
-            - POSTGRES_PASSWORD=promotions
-            - POSTGRES_DB=promotions                        
-            
-    data_server:
-        container_name : "data_server"
-        image: my-airflow-presentation-dataserver:latest
-        depends_on:
-            - data_postgres
-        ports:
-            - "9000:9000"
-
             
